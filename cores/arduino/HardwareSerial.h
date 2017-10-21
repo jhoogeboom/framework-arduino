@@ -39,20 +39,10 @@
 // atomicity guards needed for that are not implemented. This will
 // often work, but occasionally a race condition can occur that makes
 // Serial behave erratically. See https://github.com/arduino/Arduino/issues/2405
-#if !defined(SERIAL_TX_BUFFER_SIZE)
-#if ((RAMEND - RAMSTART) < 1023)
-#define SERIAL_TX_BUFFER_SIZE 16
-#else
-#define SERIAL_TX_BUFFER_SIZE 64
-#endif
-#endif
-#if !defined(SERIAL_RX_BUFFER_SIZE)
-#if ((RAMEND - RAMSTART) < 1023)
-#define SERIAL_RX_BUFFER_SIZE 16
-#else
-#define SERIAL_RX_BUFFER_SIZE 64
-#endif
-#endif
+
+#define SERIAL_RX_BUFFER_SIZE 255
+#define SERIAL_TX_BUFFER_SIZE 255
+
 #if (SERIAL_TX_BUFFER_SIZE>256)
 typedef uint16_t tx_buffer_index_t;
 #else
